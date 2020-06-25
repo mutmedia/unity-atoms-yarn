@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityAtoms;
 using UnityAtoms.BaseAtoms;
@@ -13,10 +14,10 @@ namespace UnityAtomsYarn
     private static EventCommandHandler instance;
 
     [SerializeField] private string eventsPath = "Events";
-    [SerializeField] private string eventCommandName = "Events";
+    [SerializeField] private string eventCommandName = "event";
     [SerializeField] private DialogueRunner dialogueRunner;
 
-    AtomEventBase[] events;
+    private Dictionary<string, AtomEventBase> eventMap;
 
     void Awake()
     {
@@ -27,7 +28,9 @@ namespace UnityAtomsYarn
         return;
       }
 
-      events = Resources.LoadAll<AtomEventBase>(eventsPath);
+      var events = Resources.LoadAll<AtomEventBase>(eventsPath);
+      eventMap = events.ToDictionary(ev => ev.name.ToLower(), ev => ev);
+      Debug.Log(eventMap.Keys.Count);
 
       dialogueRunner = dialogueRunner ?? GetComponent<DialogueRunner>();
       dialogueRunner.AddCommandHandler(eventCommandName, RaiseEvent);
@@ -47,9 +50,7 @@ namespace UnityAtomsYarn
 
       var eventName = parameters[0];
 
-      var eventTriggered = events.FirstOrDefault(e => e.name.ToLower() == eventName.ToLower());
-
-      if (eventTriggered == null)
+      if (!eventMap.TryGetValue(eventName.ToLower(), out var eventTriggered))
       {
         Debug.LogError($"The Event named {eventName} does not exist.");
         return;

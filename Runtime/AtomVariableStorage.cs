@@ -24,11 +24,21 @@ namespace UnityAtomsYarn
     /// Erase all variables and reset to default values
     public override void ResetToDefaults()
     {
-      Clear();
+      List<string> valuesToRemove = new List<string>();
       foreach (var kvp in variables.Value)
       {
-        kvp.Value.Reset();
+        if (kvp.Value != null)
+        {
+          kvp.Value.Reset();
+
+        }
+        else
+        {
+          valuesToRemove.Add(kvp.Key);
+        }
       }
+
+      valuesToRemove.ForEach(key => variables.Value.Remove(key));
     }
 
     /// Set a variable's value
@@ -66,7 +76,31 @@ namespace UnityAtomsYarn
       }
       else
       {
-        variable.BaseValue = value;
+        try
+        {
+          switch (value.type)
+          {
+            case Yarn.Value.Type.Bool:
+              variable.BaseValue = value.AsBool;
+              break;
+
+            case Yarn.Value.Type.Number:
+              variable.BaseValue = value.AsNumber;
+              break;
+
+            case Yarn.Value.Type.String:
+              variable.BaseValue = value.AsString;
+              break;
+
+            default:
+              Debug.LogError($"The variable {variableName} has no value convertible to a unity atom");
+              break;
+          }
+        }
+        catch
+        {
+          Debug.LogError($"Tried to set {variableName} with incorrect type: {value.type}");
+        }
       }
     }
 
