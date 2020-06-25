@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DialogueOptions
   m_EditorClassIdentifier: 
   _developerDescription: 
-  Cleared: {fileID: 0}
-  Added: {fileID: 0}
-  Removed: {fileID: 0}
+  Cleared: {fileID: 11400000, guid: 10c3de1afd2ca894da3d9a16c4280b3e, type: 2}
+  Added: {fileID: 11400000, guid: a1e0197e3c6607f438150e409da6ae15, type: 2}
+  Removed: {fileID: 11400000, guid: 3a3a1d8d7d30fd24f96fe56a5da202d6, type: 2}
   list: []

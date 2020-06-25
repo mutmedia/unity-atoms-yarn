@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755772bf745b9d46a022c38ac4995d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variablesPath: YarnAtoms/Variables
   variables: {fileID: 11400000, guid: eb7f302d7234a704e9e28653bfc3dcae, type: 2}
 --- !u!1 &3702445751379501408
 GameObject:
@@ -55,6 +56,8 @@ GameObject:
   - component: {fileID: 3702445751379501413}
   - component: {fileID: 3702445751379501414}
   - component: {fileID: 3702445751379501415}
+  - component: {fileID: 3702445751032657149}
+  - component: {fileID: 3702445751032657151}
   m_Layer: 0
   m_Name: Yarn
   m_TagString: Untagged
@@ -128,9 +131,11 @@ MonoBehaviour:
   onDialogueStart:
     m_PersistentCalls:
       m_Calls: []
+  onDialogueEndEvent: {fileID: 0}
   onDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
+  onLineStartEvent: {fileID: 0}
   onLineStart:
     m_PersistentCalls:
       m_Calls: []
@@ -152,3 +157,53 @@ MonoBehaviour:
   onCommand:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3702445751032657149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702445751379501408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764fa02f64386fe46a784ece3b9e545b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventsPath: YarnAtoms/Events
+  eventCommandName: event
+  dialogueRunner: {fileID: 3702445751379501414}
+--- !u!114 &3702445751032657151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702445751379501408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050ff37b5550f4b7e9bdf8b985aff484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3702445751379501415}
+        m_MethodName: SelectOption
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 0
+    _event: {fileID: 11400000, guid: b8f22b5668e1b6241a9ab4e3871ca709, type: 2}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}

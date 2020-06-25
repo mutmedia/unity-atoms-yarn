@@ -13,12 +13,28 @@ namespace UnityAtomsYarn
 {
   public class AtomVariableStorage : VariableStorageBehaviour
   {
-    public AtomCollection variables;
+    [SerializeField] private string variablesPath = "YarnAtoms/Variables";
+    [SerializeField] private AtomCollection variables;
 
     /// Reset to our default values when the game starts
     void Awake()
     {
       ResetToDefaults();
+
+      var loadedVariables = Resources.LoadAll<AtomBaseVariable>(variablesPath);
+      foreach (var v in loadedVariables)
+      {
+        var existing = variables.Value.Get<AtomBaseVariable>(v.name);
+        if (existing == null)
+        {
+          variables.Value.Add(v.name, v);
+        }
+        else
+        {
+          Debug.LogWarning($"Variable with name {v.name} is already defines in {variables.name}, and was overwriten");
+          existing = v;
+        }
+      }
     }
 
     /// Erase all variables and reset to default values

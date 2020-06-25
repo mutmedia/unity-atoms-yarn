@@ -13,7 +13,7 @@ namespace UnityAtomsYarn
     // Singleton logic
     private static EventCommandHandler instance;
 
-    [SerializeField] private string eventsPath = "Events";
+    [SerializeField] private string eventsPath = "YarnAtoms/Events";
     [SerializeField] private string eventCommandName = "event";
     [SerializeField] private DialogueRunner dialogueRunner;
 
