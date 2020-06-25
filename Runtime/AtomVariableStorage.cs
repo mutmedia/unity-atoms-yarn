@@ -24,10 +24,10 @@ namespace UnityAtomsYarn
       var loadedVariables = Resources.LoadAll<AtomBaseVariable>(variablesPath);
       foreach (var v in loadedVariables)
       {
-        var existing = variables.Value.Get<AtomBaseVariable>(v.name);
+        var existing = variables.Value.Get<AtomBaseVariable>(v.name.ToLower());
         if (existing == null)
         {
-          variables.Value.Add(v.name, v);
+          variables.Value.Add(v.name.ToLower(), v);
         }
         else
         {
@@ -60,7 +60,7 @@ namespace UnityAtomsYarn
     /// Set a variable's value
     public override void SetValue(string variableName, Yarn.Value value)
     {
-      variableName = variableName.Substring(1);
+      variableName = variableName.Substring(1).ToLower();
       var variable = variables.Value.Get<AtomBaseVariable>(variableName);
 
       if (variable == null)
@@ -124,7 +124,7 @@ namespace UnityAtomsYarn
     public override Yarn.Value GetValue(string variableName)
     {
       // If we don't have a variable with this name, return the null value
-      variableName = variableName.Substring(1);
+      variableName = variableName.Substring(1).ToLower();
       var variable = variables.Value.Get<AtomBaseVariable>(variableName);
       if (variable == null)
         return Yarn.Value.NULL;
