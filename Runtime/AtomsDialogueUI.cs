@@ -34,6 +34,7 @@ using UnityAtoms.BaseAtoms;
 using Yarn.Unity;
 using Yarn;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace UnityAtomsYarn
 {
@@ -76,9 +77,13 @@ namespace UnityAtomsYarn
     /// </remarks>
     public StringValueList DialogueOptions;
 
+    // TODO: custom editor / Options / Regex?
+    [HideInInspector] [SerializeField] public bool LoadNamedSpeakersFromResources = true;
+    [HideInInspector] [SerializeField] private string NamedSpeakersPath = "Yarn/Speakers";
+
     [HideInInspector]
     [SerializeField]
-    private AtomCollection NamedInteractables;
+    private AtomCollection NamedSpeakers;
 
     public StringVariable CurrentSpeaker;
 
@@ -105,7 +110,6 @@ namespace UnityAtomsYarn
     /// </remarks>
     public UnityEngine.Events.UnityEvent onDialogueStart;
 
-    public VoidEvent onDialogueEndEvent;
     /// <summary>
     /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
     /// when the dialogue ends.
@@ -116,7 +120,6 @@ namespace UnityAtomsYarn
     /// </remarks>
     public UnityEngine.Events.UnityEvent onDialogueEnd;
 
-    public VoidEvent onLineStartEvent;
     /// <summary>
     /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
     /// when a <see cref="Line"/> has been delivered.
@@ -226,7 +229,16 @@ namespace UnityAtomsYarn
 
     internal void Awake()
     {
+      NamedSpeakers.Value.Clear();
       DialogueOptions.Clear();
+      if (LoadNamedSpeakersFromResources)
+      {
+        var namedSpeakers = Resources.LoadAll<StringVariable>(NamedSpeakersPath);
+        foreach (var speaker in namedSpeakers)
+        {
+          NamedSpeakers.Value.Add(speaker.name, speaker);
+        }
+      }
     }
 
     /// Runs a line.
@@ -281,10 +293,10 @@ namespace UnityAtomsYarn
       {
         textVar = NarratorText;
       }
-      else // Basic case where it's looking for a named interactable
+      else // Basic case where it's looking for a named speaker
       {
         // CurrentParticipants.Add(speaker.Name);
-        textVar = NamedInteractables.Value.Get<StringVariable>(speakerName);
+        textVar = NamedSpeakers.Value.Get<StringVariable>(speakerName);
       }
 
       //TODO: save participants in conversation? (Game Object? StringVariable? String?)
@@ -395,6 +407,8 @@ namespace UnityAtomsYarn
 
       currentOptionSelectionHandler = selectOption;
 
+      onOptionsStart?.Invoke();
+
       // Wait until the chooser has been used and then removed (see SetOption below)
       while (waitingForOptionSelection)
       {
@@ -402,6 +416,8 @@ namespace UnityAtomsYarn
       }
 
       DialogueOptions.Clear();
+
+      onOptionsEnd?.Invoke();
     }
 
     /// Runs a command.

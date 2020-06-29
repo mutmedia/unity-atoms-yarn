@@ -13,9 +13,11 @@ namespace UnityAtomsYarn
     // Singleton logic
     private static EventCommandHandler instance;
 
+    [SerializeField] private DialogueRunner dialogueRunner;
+
+    [Header("Options")]
     [SerializeField] private string eventsPath = "YarnAtoms/Events";
     [SerializeField] private string eventCommandName = "event";
-    [SerializeField] private DialogueRunner dialogueRunner;
 
     private Dictionary<string, AtomEventBase> eventMap;
 
@@ -30,7 +32,6 @@ namespace UnityAtomsYarn
 
       var events = Resources.LoadAll<AtomEventBase>(eventsPath);
       eventMap = events.ToDictionary(ev => ev.name.ToLower(), ev => ev);
-      Debug.Log(eventMap.Keys.Count);
 
       dialogueRunner = dialogueRunner ?? GetComponent<DialogueRunner>();
       dialogueRunner.AddCommandHandler(eventCommandName, RaiseEvent);
