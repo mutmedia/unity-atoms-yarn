@@ -30,7 +30,6 @@ namespace UnityAtomsYarn.UI
 
     public void OnDialogueOptionsChange()
     {
-      Debug.Log("ADICIONOOOU");
       while (DialogueOptions.Count > DialogueOptionsButtons.Count)
       {
         var button = Instantiate<AtomDialogueOptionButton>(ButtonPrefab, transform);
