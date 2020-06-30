@@ -319,8 +319,11 @@ namespace UnityAtomsYarn
       CurrentSpeaker.Value = speakerName;
       #endregion
 
-      UnityAction<string> updateTextVar = (t) => textVar.SetValue(t);
-      onLineUpdate.AddListener(updateTextVar);
+      onDialogueEnd.AddListener(() =>
+      {
+        textVar.SetValue("");
+        Debug.Log("removeddddd");
+      });
 
       if (textSpeed > 0.0f)
       {
@@ -330,11 +333,14 @@ namespace UnityAtomsYarn
         foreach (char c in text)
         {
           stringBuilder.Append(c);
-          onLineUpdate?.Invoke(stringBuilder.ToString());
+          var currentText = stringBuilder.ToString();
+          textVar.SetValue(currentText);
+          onLineUpdate?.Invoke(currentText);
           if (userRequestedNextLine)
           {
             // We've requested a skip of the entire line.
             // Display all of the text immediately.
+            textVar.SetValue(text);
             onLineUpdate?.Invoke(text);
             break;
           }
@@ -345,6 +351,7 @@ namespace UnityAtomsYarn
       {
         // Display the entire line immediately if textSpeed <= 0
         onLineUpdate?.Invoke(lineString);
+        textVar.SetValue(lineString);
       }
 
       // We're now waiting for the player to move on to the next line
@@ -362,8 +369,9 @@ namespace UnityAtomsYarn
       yield return new WaitForEndOfFrame();
 
       // Hide the text and prompt
+      textVar.SetValue("");
       onLineUpdate?.Invoke("");
-      onLineUpdate.RemoveListener(updateTextVar);
+
       onLineEnd?.Invoke();
 
       onComplete();
