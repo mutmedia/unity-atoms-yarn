@@ -347,8 +347,6 @@ namespace UnityAtomsYarn
         onLineUpdate?.Invoke(lineString);
       }
 
-      onLineUpdate.RemoveListener(updateTextVar);
-
       // We're now waiting for the player to move on to the next line
       userRequestedNextLine = false;
 
@@ -364,6 +362,8 @@ namespace UnityAtomsYarn
       yield return new WaitForEndOfFrame();
 
       // Hide the text and prompt
+      onLineUpdate?.Invoke("");
+      onLineUpdate.RemoveListener(updateTextVar);
       onLineEnd?.Invoke();
 
       onComplete();
