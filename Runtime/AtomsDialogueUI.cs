@@ -322,7 +322,6 @@ namespace UnityAtomsYarn
       onDialogueEnd.AddListener(() =>
       {
         textVar.SetValue("");
-        Debug.Log("removeddddd");
       });
 
       if (textSpeed > 0.0f)
