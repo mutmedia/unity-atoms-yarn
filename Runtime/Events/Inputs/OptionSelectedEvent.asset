@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fce12a4beec24778830e555cb6e5ca3, type: 3}
   m_Name: OptionSelectedEvent
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: 'Called to select an option in the dialogue options
+
+    params (int): the index of the option selected'
   _replayBufferSize: 1
   _inspectorRaiseValue: 0

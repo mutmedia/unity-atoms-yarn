@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755772bf745b9d46a022c38ac4995d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variablesPath: YarnAtoms/Variables
+  variablesPath: Yarn/Variables
   variables: {fileID: 11400000, guid: eb7f302d7234a704e9e28653bfc3dcae, type: 2}
 --- !u!1 &3702445751379501408
 GameObject:
@@ -163,9 +163,9 @@ MonoBehaviour:
   onLineStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7065cd357109621479abe350ba560f1c, type: 2}
+      - m_Target: {fileID: 11400000, guid: 3b79bb3cca03cb64aa3b2cc001f4c114, type: 2}
         m_MethodName: Raise
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -365,6 +365,10 @@ MonoBehaviour:
     _usage: 0
     _event: {fileID: 11400000, guid: 8e5e95038ae62f64199bb8d9f7321392, type: 2}
     _eventInstancer: {fileID: 0}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
 --- !u!114 &1041760843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,3 +402,7 @@ MonoBehaviour:
     _usage: 0
     _event: {fileID: 11400000, guid: bf02dd4e61e34cd44929b26fb8b1a07b, type: 2}
     _eventInstancer: {fileID: 0}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}

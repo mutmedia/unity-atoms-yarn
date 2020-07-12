@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d35e2eb934747da9d77a3af62bb8ca, type: 3}
   m_Name: DialogueLineEnded
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: 'Event called when the current line ends after the player
+    has requested the next.
+
+    happens before: DialogueEnded or DialogueLineStarted
+
+    happens after: DialogueLineFinishedDisplaying'
   _replayBufferSize: 1

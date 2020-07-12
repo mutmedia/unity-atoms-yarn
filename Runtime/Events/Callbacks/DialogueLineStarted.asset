@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d35e2eb934747da9d77a3af62bb8ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 75feba4dec8d44f0fb83f34e749e4dc3, type: 3}
   m_Name: DialogueLineStarted
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: 'Event called when a dialogue line will start displaying
+
+    params (string): the complete line that will be sent'
   _replayBufferSize: 1
+  _inspectorRaiseValue: 

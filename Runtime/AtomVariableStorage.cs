@@ -31,7 +31,6 @@ namespace UnityAtomsYarn
         }
         else
         {
-          Debug.LogWarning($"Variable with name {v.name} is already defines in {variables.name}, and was overwriten");
           existing = v;
         }
       }

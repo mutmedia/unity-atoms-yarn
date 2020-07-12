@@ -128,7 +128,7 @@ namespace UnityAtomsYarn
     /// This method is called before <see cref="onLineUpdate"/> is
     /// called. Use this event to prepare the scene to deliver a line.
     /// </remarks>
-    public UnityEngine.Events.UnityEvent onLineStart;
+    public Yarn.Unity.DialogueRunner.StringUnityEvent onLineStart;
 
     /// <summary>
     /// A <see cref="UnityEngine.Events.UnityEvent"/> that is called
@@ -254,7 +254,6 @@ namespace UnityAtomsYarn
     /// Show a line of dialogue, gradually        
     private IEnumerator DoRunLine(Yarn.Line line, ILineLocalisationProvider localisationProvider, System.Action onComplete)
     {
-      onLineStart?.Invoke();
 
       userRequestedNextLine = false;
 
@@ -319,10 +318,12 @@ namespace UnityAtomsYarn
       CurrentSpeaker.Value = speakerName;
       #endregion
 
+      onLineStart?.Invoke(text);
       onDialogueEnd.AddListener(() =>
       {
         textVar.SetValue("");
       });
+
 
       if (textSpeed > 0.0f)
       {

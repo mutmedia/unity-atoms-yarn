@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d35e2eb934747da9d77a3af62bb8ca, type: 3}
   m_Name: DialogueOptionsEnded
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: Called when the dialogue options display has been completed.
+    (user selected an option)
   _replayBufferSize: 1

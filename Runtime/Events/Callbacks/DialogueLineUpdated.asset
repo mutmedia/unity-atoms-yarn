@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75feba4dec8d44f0fb83f34e749e4dc3, type: 3}
   m_Name: DialogueLineUpdated
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: 'Event called when each new character is sent to the dialogueline
+
+    params (string): the current slice of the line'
   _replayBufferSize: 1
   _inspectorRaiseValue: 

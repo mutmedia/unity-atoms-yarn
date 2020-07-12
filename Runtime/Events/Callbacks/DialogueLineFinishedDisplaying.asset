@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d35e2eb934747da9d77a3af62bb8ca, type: 3}
   m_Name: DialogueLineFinishedDisplaying
   m_EditorClassIdentifier: 
-  _developerDescription: 
+  _developerDescription: 'Event called once the last character of a line has been
+    sent, or the player requested to skip to the end of the line.
+
+    happens before: DialogueLineEnded
+
+    happens after: DialogueLineStarted'
   _replayBufferSize: 1
